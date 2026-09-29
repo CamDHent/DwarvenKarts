@@ -45,3 +45,20 @@ bool UDKDiceLibrary::DiceCheck(
 
     return Total >= Difficulty;
 }
+
+FDiceCheckResult UDKDiceLibrary::DiceCheckDetailed(
+    int32 NumberOfDice,
+    int32 Sides,
+    int32 Modifier,
+    int32 Difficulty)
+{
+    FDiceCheckResult Result;
+
+    Result.RollTotal = RollDice(NumberOfDice, Sides);
+    Result.Modifier = Modifier;
+    Result.FinalTotal = Result.RollTotal + Modifier;
+    Result.Difficulty = Difficulty;
+    Result.bSuccess = Result.FinalTotal >= Difficulty;
+
+    return Result;
+}

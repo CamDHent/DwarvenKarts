@@ -4,6 +4,27 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "DKDiceLibrary.generated.h"
 
+USTRUCT(BlueprintType)
+struct FDiceCheckResult
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Dwarven Karts|Dice")
+	int32 RollTotal = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Dwarven Karts|Dice")
+	int32 Modifier = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Dwarven Karts|Dice")
+	int32 FinalTotal = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Dwarven Karts|Dice")
+	int32 Difficulty = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Dwarven Karts|Dice")
+	bool bSuccess = false;
+};
+
 /**
  * Core dice rolling functions for Dwarven Karts.
  */
@@ -45,6 +66,18 @@ public:
  */
 	UFUNCTION(BlueprintPure, Category = "Dwarven Karts|Dice")
 	static bool DiceCheck(
+		int32 NumberOfDice,
+		int32 Sides,
+		int32 Modifier,
+		int32 Difficulty
+	);
+
+	/**
+ * Performs a dice check and returns the full result.
+ * Includes the raw roll, modifier, final total, difficulty, and success.
+ */
+	UFUNCTION(BlueprintPure, Category = "Dwarven Karts|Dice")
+	static FDiceCheckResult DiceCheckDetailed(
 		int32 NumberOfDice,
 		int32 Sides,
 		int32 Modifier,
