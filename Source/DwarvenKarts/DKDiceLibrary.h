@@ -38,4 +38,16 @@ public:
 		int32 Sides,
 		int32 Modifier
 	);
+
+	/**
+ * Performs a dice check against a difficulty.
+ * Returns true if the modified roll meets or exceeds the difficulty.
+ */
+	UFUNCTION(BlueprintPure, Category = "Dwarven Karts|Dice")
+	static bool DiceCheck(
+		int32 NumberOfDice,
+		int32 Sides,
+		int32 Modifier,
+		int32 Difficulty
+	);
 };

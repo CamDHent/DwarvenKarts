@@ -34,3 +34,14 @@ int32 UDKDiceLibrary::RollDiceWithModifier(
 {
     return RollDice(NumberOfDice, Sides) + Modifier;
 }
+
+bool UDKDiceLibrary::DiceCheck(
+    int32 NumberOfDice,
+    int32 Sides,
+    int32 Modifier,
+    int32 Difficulty)
+{
+    int32 Total = RollDiceWithModifier(NumberOfDice, Sides, Modifier);
+
+    return Total >= Difficulty;
+}
