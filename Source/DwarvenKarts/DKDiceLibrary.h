@@ -27,4 +27,15 @@ public:
  */
 	UFUNCTION(BlueprintPure, Category = "Dwarven Karts|Dice")
 	static int32 RollDice(int32 NumberOfDice, int32 Sides);
+
+	/**
+ * Rolls multiple dice and applies a modifier to the total.
+ * Example: RollDiceWithModifier(2, 6, 3) rolls 2d6 + 3.
+ */
+	UFUNCTION(BlueprintPure, Category = "Dwarven Karts|Dice")
+	static int32 RollDiceWithModifier(
+		int32 NumberOfDice,
+		int32 Sides,
+		int32 Modifier
+	);
 };

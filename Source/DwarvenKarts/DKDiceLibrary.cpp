@@ -26,3 +26,11 @@ int32 UDKDiceLibrary::RollDice(int32 NumberOfDice, int32 Sides)
 
     return Total;
 }
+
+int32 UDKDiceLibrary::RollDiceWithModifier(
+    int32 NumberOfDice,
+    int32 Sides,
+    int32 Modifier)
+{
+    return RollDice(NumberOfDice, Sides) + Modifier;
+}
