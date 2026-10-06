@@ -6,6 +6,10 @@
 #include "Components/ActorComponent.h"
 #include "DKStatsComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnPuttPuttModeEntered);
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnPuttPuttModeExited);
+
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class DWARVENKARTS_API UDKStatsComponent : public UActorComponent
@@ -23,16 +27,16 @@ public:
 	int32 CurrentHealth = 100;
 
 	/**
- * Removes health from this component.
- * Health will never drop below 0.
- */
+	* Removes health from this component.
+	* Health will never drop below 0.
+	*/
 	UFUNCTION(BlueprintCallable, Category = "Dwarven Karts|Stats")
 	void TakeDamage(int32 DamageAmount);
 
 	/**
- * Restores health to this component.
- * Health will never exceed MaxHealth.
- */
+	* Restores health to this component.
+	* Health will never exceed MaxHealth.
+	*/
 	UFUNCTION(BlueprintCallable, Category = "Dwarven Karts|Stats")
 	void Heal(int32 HealAmount);
 
@@ -42,6 +46,20 @@ public:
 	 */
 	UFUNCTION(BlueprintPure, Category = "Dwarven Karts|Stats")
 	bool IsInPuttPuttMode() const;
+
+	/**
+	* Fired when this component's health reaches zero
+	* and the kart enters PuttPutt Mode.
+	*/
+	UPROPERTY(BlueprintAssignable, Category = "Dwarven Karts|Stats")
+	FOnPuttPuttModeEntered OnPuttPuttModeEntered;
+
+	/**
+	* Fired when this component recovers from zero health
+	* and exits PuttPutt Mode.
+	*/
+	UPROPERTY(BlueprintAssignable, Category = "Dwarven Karts|Stats")
+	FOnPuttPuttModeExited OnPuttPuttModeExited;
 
 protected:
 	// Called when the game starts

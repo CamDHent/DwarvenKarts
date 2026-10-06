@@ -29,11 +29,18 @@ void UDKStatsComponent::TakeDamage(int32 DamageAmount)
         return;
     }
 
+    const int32 PreviousHealth = CurrentHealth;
+
     CurrentHealth = FMath::Clamp(
         CurrentHealth - DamageAmount,
         0,
         MaxHealth
     );
+
+    if (PreviousHealth > 0 && CurrentHealth == 0)
+    {
+        OnPuttPuttModeEntered.Broadcast();
+    }
 }
 
 void UDKStatsComponent::Heal(int32 HealAmount)
@@ -43,11 +50,18 @@ void UDKStatsComponent::Heal(int32 HealAmount)
         return;
     }
 
+    const int32 PreviousHealth = CurrentHealth;
+
     CurrentHealth = FMath::Clamp(
         CurrentHealth + HealAmount,
         0,
         MaxHealth
     );
+
+    if (PreviousHealth == 0 && CurrentHealth > 0)
+    {
+        OnPuttPuttModeExited.Broadcast();
+    }
 }
 
 bool UDKStatsComponent::IsInPuttPuttMode() const
