@@ -68,3 +68,13 @@ bool UDKStatsComponent::IsInPuttPuttMode() const
 {
     return CurrentHealth <= 0;
 }
+
+bool UDKStatsComponent::CanUseCombatSystems() const
+{
+    return !IsInPuttPuttMode();
+}
+
+bool UDKStatsComponent::CanUseAbilities() const
+{
+    return !IsInPuttPuttMode();
+}

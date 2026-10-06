@@ -48,6 +48,20 @@ public:
 	bool IsInPuttPuttMode() const;
 
 	/**
+	* Returns true when this kart is allowed to use
+	* its normal combat systems.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Dwarven Karts|Stats")
+	bool CanUseCombatSystems() const;
+
+	/**
+	* Returns true when this kart is allowed to use
+	* its normal character abilities.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Dwarven Karts|Stats")
+	bool CanUseAbilities() const;
+
+	/**
 	* Fired when this component's health reaches zero
 	* and the kart enters PuttPutt Mode.
 	*/
